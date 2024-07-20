@@ -1,0 +1,19 @@
+#!/bin/sh
+NAME=websockets-app
+USER=fastapi-user
+GROUP=fastapi-group
+WORKERS=3
+WORKER_CLASS=uvicorn.workers.UvicornWorker
+# BIND=unix:$DIR/run/gunicorn.sock
+PORT=${PORT:-8000}
+BIND=0.0.0.0:$PORT
+LOG_LEVEL=error
+
+exec gunicorn main:app --reload \
+  --name $NAME \
+  --workers $WORKERS \
+  --worker-class $WORKER_CLASS \
+  --user $USER \
+  --group $GROUP \
+  --bind $BIND \
+  --log-level $LOG_LEVEL 

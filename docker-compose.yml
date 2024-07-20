@@ -1,0 +1,64 @@
+version: '3.7'
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  app1:
+    container_name: app1
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    volumes:
+      - ./app:/app
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - PORT=8000
+    networks:
+      - app-network
+
+  app2:
+    container_name: app2
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    volumes:
+      - ./app:/app
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - PORT=8000
+    networks:
+      - app-network
+
+  app3:
+    container_name: app3
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    volumes:
+      - ./app:/app
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=development
+      - PORT=8000
+    networks:
+      - app-network
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    networks:
+      - app-network
