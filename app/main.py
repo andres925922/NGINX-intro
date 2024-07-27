@@ -1,16 +1,13 @@
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+import os
 
 app = FastAPI()
 
-@app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    while True:
-        data = await websocket.receive_text()
-        print(f"Message text was: {data}")
-        await websocket.send_text(f"Message text was: {data}")
-
 @app.get("/health")
 def health_check():
-    return JSONResponse(content={"status": "ok"}, status_code=200)
+    return JSONResponse(content={
+        "status": "ok",
+        "listening_port": os.environ.get("PORT", 8000),
+        "app_name": os.environ.get("APP_NAME", "app")
+        }, status_code=200)

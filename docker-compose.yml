@@ -16,6 +16,7 @@ services:
       - ./app:/app
     environment:
       - PORT=8000
+      - APP_NAME=app1
     networks:
       - app-network
 
@@ -30,6 +31,7 @@ services:
       - ./app:/app
     environment:
       - PORT=8000
+      - APP_NAME=app2
     networks:
       - app-network
 
@@ -44,6 +46,112 @@ services:
       - ./app:/app
     environment:
       - PORT=8000
+      - APP_NAME=app3
+    networks:
+      - app-network
+
+  app4:
+    container_name: app4
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    volumes:
+      - ./app:/app
+    environment:
+      - PORT=8000
+      - APP_NAME=app4
+    networks:
+      - app-network
+
+  app5:
+    container_name: app5
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    volumes:
+      - ./app:/app
+    environment:
+      - PORT=8000
+      - APP_NAME=app5
+    networks:
+      - app-network
+
+  app6:
+    container_name: app6
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    volumes:
+      - ./app:/app
+    environment:
+      - PORT=8000
+      - APP_NAME=app6
+    networks:
+      - app-network
+
+  app7:
+    container_name: app7
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    volumes:
+      - ./app:/app
+    environment:
+      - PORT=8000
+      - APP_NAME=app7
+    networks:
+      - app-network
+
+  app8:
+    container_name: app8
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    volumes:
+      - ./app:/app
+    environment:
+      - PORT=8000
+      - APP_NAME=app8
+    networks:
+      - app-network
+
+  app9:
+    container_name: app9
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    volumes:
+      - ./app:/app
+    environment:
+      - PORT=8000
+      - APP_NAME=app9
+    networks:
+      - app-network
+
+  app10:
+    container_name: app10
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000
+    volumes:
+      - ./app:/app
+    environment:
+      - PORT=8000
+      - APP_NAME=app10
     networks:
       - app-network
 
@@ -56,3 +164,14 @@ services:
       - 80:80
     networks:
       - app-network
+    depends_on:
+      - app1
+      - app2
+      - app3
+      - app4
+      - app5
+      - app6
+      - app7
+      - app8
+      - app9
+      - app10
