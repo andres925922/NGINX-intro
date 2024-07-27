@@ -19,6 +19,9 @@ http {
         server app3:8000;
         server app4:8000;
         server app5:8000;
+    }
+
+    upstream backend2 {
         server app6:8000;
         server app7:8000;
         server app8:8000;
@@ -31,11 +34,11 @@ http {
         server_name localhost;
 
         location / {
-            proxy_pass http://backend;
+            proxy_pass http://${BACKEND_HOST};
         }
 
         location /health {
-            proxy_pass http://backend/health;
+            proxy_pass http://${BACKEND_HOST}/health;
         }
     }
 }

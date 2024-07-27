@@ -164,12 +164,27 @@ services:
       - 80:80
     networks:
       - app-network
+    environment:
+      - BACKEND_HOST=backend
     depends_on:
       - app1
       - app2
       - app3
       - app4
       - app5
+
+  nginx1:
+    container_name: nginx1
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 81:80
+    networks:
+      - app-network
+    environment:
+      - BACKEND_HOST=backend2
+    depends_on:
       - app6
       - app7
       - app8
